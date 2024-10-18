@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        
+        
+        class Node {
+        constructor(value) {
+        this.value = value;
+        this.next = null;
+    }
+}
+
+class LinkedList {
+    constructor() {
+        this.head = null;
+        this.size = 0;
+    }
+
+   
+    append(value) {
+        const newNode = new Node(value);
+        if (!this.head) {
+            this.head = newNode;
+        } else {
+            let current = this.head;
+            while (current.next) {
+                current = current.next;
+            }
+            current.next = newNode;
+        }
+        this.size++;
+    }
+
+  
+    remove(value) {
+        if (!this.head)
+        return;
+
+      
+        if (this.head.value === value) {
+            this.head = this.head.next;
+            this.size--;
+            return;
+        }
+
+        let current = this.head;
+        while (current.next) {
+            if (current.next.value === value) {
+                current.next = current.next.next;
+                this.size--;
+                return;
+            }
+            current = current.next;
+        }
+    }
+
+    display() {
+        let current = this.head;
+        const elements = [];
+        while (current) {
+            elements.push(current.value);
+            current = current.next;
+        }
+        console.log(elements.join(">>>"));
+    }
+}
+
+
+const list = new LinkedList();
+list.append(10);
+list.append(20);
+list.append(30);
+list.display(); 
+
+list.remove(20);
+list.display(); 
+
+
+
+
+
+
+
+function shellSort(array) {
+    const n = array.length;
+    let gap = Math.floor(n / 2); 
+
+    while (gap > 0) {
+        for (let i = gap; i < n; i++) {
+            const temp = array[i];
+            let j = i;
+
+          
+            while (j >= gap && array[j - gap] > temp) {
+                array[j] = array[j - gap];
+                j -= gap;
+            }
+           
+            array[j] = temp;
+        }
+        gap = Math.floor(gap / 2);
+    }
+    return array;
+}
+
+
+const arr = [12, 34, 54, 2, 3];
+const sorted = shellSort(arr);
+console.log(sorted); 
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
